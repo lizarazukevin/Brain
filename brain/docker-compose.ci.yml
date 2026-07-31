@@ -1,0 +1,31 @@
+# CI override for docker-compose.local.yml
+# Removes env_file dependency and provides CI-safe defaults.
+# Usage: docker compose -f docker-compose.local.yml -f docker-compose.ci.yml <command>
+
+services:
+  django: &django
+    env_file: []
+    environment:
+      - DJANGO_DEBUG=True
+      - DJANGO_SECRET_KEY=ci-test-key-not-secret
+      - DJANGO_ALLOWED_HOSTS=*
+      - USE_DOCKER=yes
+      - DATABASE_URL=postgres://brain:brain@postgres:5432/brain
+
+  postgres:
+    env_file: []
+    environment:
+      - POSTGRES_DB=brain
+      - POSTGRES_USER=brain
+      - POSTGRES_PASSWORD=brain
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+
+  celeryworker:
+    <<: *django
+
+  celerybeat:
+    <<: *django
+
+  flower:
+    <<: *django
