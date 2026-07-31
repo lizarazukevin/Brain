@@ -2,30 +2,18 @@ volumes:
   production_postgres_data: {}
   production_postgres_data_backups: {}
   production_traefik: {}
-
   production_redis_data: {}
 
-
-
 services:
-  django: &django
+  django:
     build:
-      context: .
       dockerfile: ./compose/production/django/Dockerfile
-
     image: brain_production_django
-    depends_on:
-      - postgres
-      - redis
     env_file:
       - ./.envs/.production/.django
       - ./.envs/.production/.postgres
-    command: /start
 
   postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
     image: brain_production_postgres
     volumes:
       - production_postgres_data:/var/lib/postgresql/18/docker
@@ -48,26 +36,32 @@ services:
       - '0.0.0.0:5555:5555'
 
   redis:
-    image: docker.io/redis:7.2
-
     volumes:
       - production_redis_data:/data
 
-
   celeryworker:
-    <<: *django
+    build:
+      dockerfile: ./compose/production/django/Dockerfile
     image: brain_production_celeryworker
-    command: /start-celeryworker
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
 
   celerybeat:
-    <<: *django
+    build:
+      dockerfile: ./compose/production/django/Dockerfile
     image: brain_production_celerybeat
-    command: /start-celerybeat
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
 
   flower:
-    <<: *django
+    build:
+      dockerfile: ./compose/production/django/Dockerfile
     image: brain_production_flower
-    command: /start-flower
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
 
   awscli:
     build:

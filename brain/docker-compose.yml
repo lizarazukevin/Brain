@@ -1,0 +1,36 @@
+# ==============================================================================
+# Base service definitions shared by every environment.
+#
+# docker-compose.docs.yml is intentionally NOT layered on this file — the
+# `docs` service doesn't share anything with django/postgres/redis, so it
+# stays fully self-contained and is composed on its own.
+# ==============================================================================
+
+services:
+  django: &django
+    build:
+      context: .
+    command: /start
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+
+  redis:
+    image: docker.io/redis:7.2
+
+  celeryworker:
+    <<: *django
+    command: /start-celeryworker
+
+  celerybeat:
+    <<: *django
+    command: /start-celerybeat
+
+  flower:
+    <<: *django
+    command: /start-flower

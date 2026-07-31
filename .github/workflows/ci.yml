@@ -4,7 +4,6 @@ name: CI
 env:
   DOCKER_BUILDKIT: 1
   COMPOSE_DOCKER_CLI_BUILD: 1
-  COMPOSE_FILE: brain/docker-compose.local.yml:brain/docker-compose.ci.yml
 
 on:
   pull_request:
@@ -36,6 +35,11 @@ jobs:
   # With no caching at all the entire ci process takes 3m to complete!
   pytest:
     runs-on: ubuntu-latest
+    env:
+      # NOTE: base + ci only — deliberately does NOT include
+      # docker-compose.local.yml, which requires .envs/.local/* files that
+      # don't (and shouldn't) exist on the runner.
+      COMPOSE_FILE: brain/docker-compose.yml:brain/docker-compose.ci.yml
 
     steps:
       - name: Checkout Code Repository
