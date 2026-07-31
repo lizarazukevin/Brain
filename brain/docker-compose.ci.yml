@@ -18,6 +18,7 @@ services:
       dockerfile: ./compose/local/django/Dockerfile
     image: brain_local_django
     volumes:
+      - /app/.venv
       - .:/app:z
     environment:
       - USE_DOCKER=yes
@@ -28,6 +29,9 @@ services:
       - DATABASE_URL=postgres://debug:debug@postgres:5432/brain
       - REDIS_URL=redis://redis:6379/0
       - CELERY_BROKER_URL=redis://redis:6379/0
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=debug
 
   postgres:
     image: brain_production_postgres
