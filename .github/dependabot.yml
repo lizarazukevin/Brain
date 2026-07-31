@@ -16,11 +16,11 @@ updates:
 
   # Enable version updates for Docker
   - package-ecosystem: 'docker'
-    # Look for a `Dockerfile` in the `compose/local/django` directory
+    # Look for a `Dockerfile` in the `brain/compose/` directories
     directories:
-      - 'compose/local/django/'
-      - 'compose/local/docs/'
-      - 'compose/production/django/'
+      - 'brain/compose/local/django/'
+      - 'brain/compose/local/docs/'
+      - 'brain/compose/production/django/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -39,10 +39,10 @@ updates:
   - package-ecosystem: 'docker'
     # Look for a `Dockerfile` in the listed directories
     directories:
-      - 'compose/local/node/'
-      - 'compose/production/aws/'
-      - 'compose/production/postgres/'
-      - 'compose/production/traefik/'
+      - 'brain/compose/local/node/'
+      - 'brain/compose/production/aws/'
+      - 'brain/compose/production/postgres/'
+      - 'brain/compose/production/traefik/'
     # Every weekday
     schedule:
       interval: 'daily'
@@ -50,15 +50,15 @@ updates:
   # Enable version updates for Docker Compose files
   - package-ecosystem: 'docker-compose'
     directories:
-      - '/'
+      - 'brain/'
     # Every weekday
     schedule:
       interval: 'daily'
 
   # Enable version updates for Python/uv
   - package-ecosystem: 'uv'
-    # Look for a `pyproject.toml` in the `root` directory
-    directory: '/'
+    # Look for a `pyproject.toml` in the `brain` directory
+    directory: 'brain/'
     # Every weekday
     schedule:
       interval: 'daily'

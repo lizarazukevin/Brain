@@ -1,0 +1,41 @@
+# ==============================================================================
+# CI overlay. Combined with the base docker-compose.yml ONLY (not
+# docker-compose.local.yml) so that CI never depends on the developer-only
+# `.envs/.local/*` files, which are not (and should not be) guaranteed to
+# exist on the runner.
+#
+# All required settings are supplied inline via `environment:` instead of
+# `env_file:`. Every value here is a throwaway, test-only value — nothing
+# secret, safe to commit.
+#
+# Usage in the workflow:
+#   COMPOSE_FILE: brain/docker-compose.yml:brain/docker-compose.ci.yml
+# ==============================================================================
+
+services:
+  django:
+    build:
+      dockerfile: ./compose/local/django/Dockerfile
+    image: brain_local_django
+    volumes:
+      - /app/.venv
+      - .:/app:z
+    environment:
+      - USE_DOCKER=yes
+      - DJANGO_SETTINGS_MODULE=config.settings.test
+      - DJANGO_SECRET_KEY=CI-CD-only-placeholder-key-not-a-real-secret
+      - DJANGO_ADMIN_URL=admin/
+      - DJANGO_ALLOWED_HOSTS=localhost,0.0.0.0
+      - DATABASE_URL=postgres://debug:debug@postgres:5432/brain
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=debug
+
+  postgres:
+    image: brain_production_postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=debug
+      - POSTGRES_DB=brain

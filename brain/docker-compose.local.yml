@@ -4,15 +4,11 @@ volumes:
   brain_local_redis_data: {}
 
 services:
-  django: &django
+  django:
     build:
-      context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: brain_local_django
     container_name: brain_local_django
-    depends_on:
-      - postgres
-      - redis
     volumes:
       - /app/.venv
       - .:/app:z
@@ -21,12 +17,8 @@ services:
       - ./.envs/.local/.postgres
     ports:
       - '8000:8000'
-    command: /start
 
   postgres:
-    build:
-      context: .
-      dockerfile: ./compose/production/postgres/Dockerfile
     image: brain_production_postgres
     container_name: brain_local_postgres
     volumes:
@@ -36,35 +28,44 @@ services:
       - ./.envs/.local/.postgres
 
   redis:
-    image: docker.io/redis:7.2
     container_name: brain_local_redis
     volumes:
       - brain_local_redis_data:/data
 
   celeryworker:
-    <<: *django
+    build:
+      dockerfile: ./compose/local/django/Dockerfile
     image: brain_local_celeryworker
     container_name: brain_local_celeryworker
-    depends_on:
-      - redis
-      - postgres
-    ports: []
-    command: /start-celeryworker
+    volumes:
+      - /app/.venv
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
 
   celerybeat:
-    <<: *django
+    build:
+      dockerfile: ./compose/local/django/Dockerfile
     image: brain_local_celerybeat
     container_name: brain_local_celerybeat
-    depends_on:
-      - redis
-      - postgres
-    ports: []
-    command: /start-celerybeat
+    volumes:
+      - /app/.venv
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
 
   flower:
-    <<: *django
+    build:
+      dockerfile: ./compose/local/django/Dockerfile
     image: brain_local_flower
     container_name: brain_local_flower
+    volumes:
+      - /app/.venv
+      - .:/app:z
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
     ports:
       - '5555:5555'
-    command: /start-flower
