@@ -147,6 +147,8 @@ lint.ignore = [
   # Deactivated because it can make the code slow:
   # https://github.com/astral-sh/ruff/issues/7871
 ]
+# Disable Type Checking
+lint.per-file-ignores."**/api/schema*.py" = [ "TC001", "TC002", "TC003" ]
 lint.isort.force-single-line = true
 
 # ==== pyproject-fmt ====
