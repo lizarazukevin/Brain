@@ -39,6 +39,9 @@ jobs:
       run:
         working-directory: frontend
     steps:
+      - name: Checkout Code Repository
+        use: actions/checkout@v7
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
