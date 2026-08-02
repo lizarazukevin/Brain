@@ -1,13 +1,15 @@
 import { z } from "zod";
 
+const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "expected YYYY-MM-DD");
+
 export const skillSchema = z.object({
-  id: z.number(),
+  id: z.number().int().positive(),
   name: z.string(),
   category: z.string(),
 });
 
 export const profileSchema = z.object({
-  id: z.number(),
+  id: z.number().int().positive(),
   name: z.string(),
   tagline: z.string(),
   bio: z.string(),
@@ -18,14 +20,14 @@ export const profileSchema = z.object({
 });
 
 export const workExperienceSchema = z.object({
-  id: z.number(),
+  id: z.number().int().positive(),
   company: z.string(),
   location: z.string(),
   role: z.string(),
-  start_date: z.string(),
-  end_date: z.string().nullable(),
+  start_date: isoDate,
+  end_date: isoDate.nullable(),
   description: z.string(),
-  order: z.number(),
+  order: z.number().int().nonnegative(),
   skills: z.array(skillSchema),
 });
 
