@@ -67,3 +67,13 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+
+  - package-ecosystem: 'npm'
+    directory: 'frontend/'
+    schedule:
+      interval: 'daily'
+    groups:
+      npm:
+        update-types:
+          - 'minor'
+          - 'patch'
