@@ -1,13 +1,11 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from ninja import NinjaAPI
-from ninja.security import SessionAuth
 
 from brain.portfolio.api.views import router as portfolio_router
 from brain.users.api.views import router as user_router
 
 api = NinjaAPI(
     urls_namespace="api",
-    auth=SessionAuth(),
     docs_decorator=staff_member_required,
 )
 

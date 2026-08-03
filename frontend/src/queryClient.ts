@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { ApiError, ApiValidationError } from "./api/errors";
+import { ApiError, ApiValidationError } from "./api/error";
 
 /**
  * Custom retry logic for TanStack Query.

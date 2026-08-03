@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { ApiError, ApiValidationError } from "./errors";
+import { ApiError, ApiValidationError } from "./error";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const DEFAULT_TIMEOUT_MS = 8000;

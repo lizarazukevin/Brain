@@ -22,15 +22,17 @@ class ProfileSchema(Schema):
     github_url: str
 
     @staticmethod
-    def resolve_avatar(obj: Profile):
+    def resolve_avatar(obj: Profile, context):
         if obj.avatar:
-            return obj.avatar.url
+            request = context["request"]
+            return request.build_absolute_uri(obj.avatar.url)
         return None
 
     @staticmethod
-    def resolve_resume(obj: Profile):
+    def resolve_resume(obj: Profile, context):
         if obj.resume:
-            return obj.resume.url
+            request = context["request"]
+            return request.build_absolute_uri(obj.resume.url)
         return None
 
 

@@ -1,3 +1,6 @@
 # --- PyCharm / IntelliJ ---
 .idea/
 *.iml
+
+# Cline Rules
+.clinerules
