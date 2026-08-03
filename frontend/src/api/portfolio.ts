@@ -1,5 +1,5 @@
 import { apiClient } from "./client";
-import { profileSchema, workExperienceListSchema } from "./schemas";
+import { profileSchema, workExperienceListSchema } from "./schema";
 
 /**
  * Fetches the singleton portfolio profile.
@@ -7,7 +7,7 @@ import { profileSchema, workExperienceListSchema } from "./schemas";
  * @returns A promise resolving to the validated Profile object.
  */
 export function getProfile(signal?: AbortSignal) {
-  return apiClient("/portfolio/profile", { schema: profileSchema, signal });
+  return apiClient("/portfolio/profile/", { schema: profileSchema, signal });
 }
 
 /**

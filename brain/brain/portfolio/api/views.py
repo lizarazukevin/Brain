@@ -23,21 +23,15 @@ def _get_profile() -> Profile:
     return profile
 
 
-@router.get("/profile/", response=ProfileSchema)
+# ── Public endpoints
+
+
+@router.get("/profile/", response=ProfileSchema, auth=None)
 def get_profile(request):
     return _get_profile()
 
 
-@router.patch("/profile/", response=ProfileSchema)
-def update_profile(request, data: ProfileUpdateSchema):
-    profile = _get_profile()
-    for attr, value in data.dict(exclude_unset=True).items():
-        setattr(profile, attr, value)
-    profile.save()
-    return profile
-
-
-@router.get("/resume/")
+@router.get("/resume/", auth=None)
 def download_resume(request):
     profile = _get_profile()
     if not profile.resume:
@@ -49,17 +43,33 @@ def download_resume(request):
     )
 
 
-@router.get("/work-experience/", response=list[WorkExperienceSchema])
+@router.get("/work-experience/", response=list[WorkExperienceSchema], auth=None)
 def list_work_experience(request):
     return WorkExperience.objects.prefetch_related("skills").all()
 
 
-@router.get("/work-experience/{experience_id}/", response=WorkExperienceSchema)
+@router.get(
+    "/work-experience/{experience_id}/",
+    response=WorkExperienceSchema,
+    auth=None,
+)
 def get_work_experience(request, experience_id: int):
     return get_object_or_404(
         WorkExperience.objects.prefetch_related("skills"),
         pk=experience_id,
     )
+
+
+# ── Protected endpoints
+
+
+@router.patch("/profile/", response=ProfileSchema)
+def update_profile(request, data: ProfileUpdateSchema):
+    profile = _get_profile()
+    for attr, value in data.dict(exclude_unset=True).items():
+        setattr(profile, attr, value)
+    profile.save()
+    return profile
 
 
 @router.post("/work-experience/", response=WorkExperienceSchema)
