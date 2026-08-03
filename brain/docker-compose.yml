@@ -21,7 +21,7 @@ services:
       dockerfile: ./compose/production/postgres/Dockerfile
 
   redis:
-    image: docker.io/redis:8.0
+    image: docker.io/redis:8.10
 
   celeryworker:
     <<: *django
