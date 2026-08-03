@@ -2,7 +2,6 @@ from django.http import FileResponse
 from django.shortcuts import get_object_or_404
 from ninja import Router
 from ninja.errors import HttpError
-from ninja.security import django_auth
 
 from brain.portfolio.api.schema import ProfileSchema
 from brain.portfolio.api.schema import ProfileUpdateSchema
@@ -13,7 +12,7 @@ from brain.portfolio.models import Profile
 from brain.portfolio.models import Skill
 from brain.portfolio.models import WorkExperience
 
-router = Router(tags=["portfolio"], auth=django_auth)
+router = Router(tags=["portfolio"])
 
 
 def _get_profile() -> Profile:

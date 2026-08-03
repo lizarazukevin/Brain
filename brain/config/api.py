@@ -1,5 +1,6 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from ninja import NinjaAPI
+from ninja.security import django_auth
 
 from brain.portfolio.api.views import router as portfolio_router
 from brain.users.api.views import router as user_router
@@ -7,6 +8,7 @@ from brain.users.api.views import router as user_router
 api = NinjaAPI(
     urls_namespace="api",
     docs_decorator=staff_member_required,
+    auth=django_auth,
 )
 
 api.add_router("/users/", user_router)
