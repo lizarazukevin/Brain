@@ -67,6 +67,7 @@ jobs:
       # docker-compose.local.yml, which requires .envs/.local/* files that
       # don't (and shouldn't) exist on the runner.
       COMPOSE_FILE: brain/docker-compose.yml:brain/docker-compose.ci.yml
+      COMPOSE_PARALLEL_LIMIT: 1
 
     steps:
       - name: Checkout Code Repository
