@@ -10,7 +10,7 @@ from brain.portfolio.models import WorkExperience
 class SkillAdmin(admin.ModelAdmin):
     list_display = ["name", "category"]
     list_filter = ["category"]
-    search_fields = ["name", "category"]
+    search_fields = ["name"]
     ordering = ["category", "name"]
 
 
@@ -29,9 +29,10 @@ class WorkExperienceSkillInline(admin.TabularInline):
 class WorkExperienceAdmin(admin.ModelAdmin):
     list_display = ["role", "company", "location", "start_date", "end_date", "order"]
     list_filter = ["company"]
-    search_fields = ["role", "company", "description"]
+    search_fields = ["role", "company", "objective"]
     ordering = ["-start_date", "order"]
     inlines = [WorkExperienceSkillInline]
+    exclude = ("skills",)
     fieldsets = (
         (
             None,
@@ -48,11 +49,10 @@ class WorkExperienceAdmin(admin.ModelAdmin):
         (
             _("Details"),
             {
-                "fields": ("description", "order"),
+                "fields": ("objective", "description", "order"),
             },
         ),
     )
-    exclude = ("skills",)
 
 
 @admin.register(Profile)

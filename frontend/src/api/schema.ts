@@ -26,6 +26,7 @@ export const workExperienceSchema = z.object({
   role: z.string(),
   start_date: isoDate,
   end_date: isoDate.nullable(),
+  objective: z.string(),
   description: z.string(),
   order: z.number().int().nonnegative(),
   skills: z.array(skillSchema),

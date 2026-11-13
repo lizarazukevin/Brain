@@ -13,6 +13,7 @@ export default function Career() {
           <h3>
             {exp.role} @ {exp.company}
           </h3>
+          <p>{exp.objective}</p>
           <p>
             {exp.location} — {exp.start_date} to {exp.end_date ?? "Present"}
           </p>

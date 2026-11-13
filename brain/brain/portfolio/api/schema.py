@@ -51,6 +51,7 @@ class WorkExperienceSchema(Schema):
     role: str
     start_date: date
     end_date: date | None = None
+    objective: str
     description: str
     order: int
     skills: list[SkillSchema]
@@ -62,6 +63,7 @@ class WorkExperienceCreateSchema(Schema):
     role: str
     start_date: date
     end_date: date | None = None
+    objective: str = ""
     description: str = ""
     order: int = 0
     skill_ids: list[int] = []
@@ -73,6 +75,7 @@ class WorkExperienceUpdateSchema(Schema):
     role: str | None = None
     start_date: date | None = None
     end_date: date | None = None
+    objective: str | None = None
     description: str | None = None
     order: int | None = None
     skill_ids: list[int] | None = None

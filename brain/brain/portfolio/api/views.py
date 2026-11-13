@@ -80,6 +80,7 @@ def create_work_experience(request, data: WorkExperienceCreateSchema):
         role=data.role,
         start_date=data.start_date,
         end_date=data.end_date,
+        objective=data.objective,
         description=data.description,
         order=data.order,
     )
