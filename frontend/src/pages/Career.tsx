@@ -16,7 +16,7 @@ export default function Career() {
           <p>
             {exp.location} — {exp.start_date} to {exp.end_date ?? "Present"}
           </p>
-          <p>{exp.description}</p>
+          <p style={{ whiteSpace: "pre-line" }}>{exp.description}</p>
           {exp.skills.length > 0 && <p>{exp.skills.map((s) => s.name).join(" · ")}</p>}
         </li>
       ))}
