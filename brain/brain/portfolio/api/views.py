@@ -8,9 +8,9 @@ from brain.portfolio.api.schema import ProfileUpdateSchema
 from brain.portfolio.api.schema import WorkExperienceCreateSchema
 from brain.portfolio.api.schema import WorkExperienceSchema
 from brain.portfolio.api.schema import WorkExperienceUpdateSchema
-from brain.portfolio.models import Profile
-from brain.portfolio.models import Skill
-from brain.portfolio.models import WorkExperience
+from brain.portfolio.models.profile import Profile
+from brain.portfolio.models.skill import Skill
+from brain.portfolio.models.work_experience import WorkExperience
 
 router = Router(tags=["portfolio"])
 

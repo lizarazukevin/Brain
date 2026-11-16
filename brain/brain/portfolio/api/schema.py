@@ -2,7 +2,7 @@ from datetime import date
 
 from ninja import Schema
 
-from brain.portfolio.models import Profile
+from brain.portfolio.models import profile
 
 
 class SkillSchema(Schema):
@@ -22,14 +22,14 @@ class ProfileSchema(Schema):
     github_url: str
 
     @staticmethod
-    def resolve_avatar(obj: Profile, context):
+    def resolve_avatar(obj: profile, context):
         if obj.avatar:
             request = context["request"]
             return request.build_absolute_uri(obj.avatar.url)
         return None
 
     @staticmethod
-    def resolve_resume(obj: Profile, context):
+    def resolve_resume(obj: profile, context):
         if obj.resume:
             request = context["request"]
             return request.build_absolute_uri(obj.resume.url)

@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from brain.portfolio.models import Profile
-from brain.portfolio.models import Skill
-from brain.portfolio.models import WorkExperience
+from brain.portfolio.models.profile import Profile
+from brain.portfolio.models.skill import Skill
+from brain.portfolio.models.work_experience import WorkExperience
 
 
 @admin.register(Skill)
