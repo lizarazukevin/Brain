@@ -1,6 +1,6 @@
-import { useWorkExperiences } from "../hooks/usePortfolio";
+import { useWorkExperiences } from "../../hooks";
 
-export default function Career() {
+export function Career() {
   const { data: experiences, isLoading, error } = useWorkExperiences();
 
   if (isLoading) return <p>Loading...</p>;

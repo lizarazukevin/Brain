@@ -1,6 +1,6 @@
-import { useProfile } from "../hooks/usePortfolio";
+import { useProfile } from "../../hooks";
 
-export default function Home() {
+export function Home() {
   const { data: profile, isLoading, error } = useProfile();
 
   if (isLoading) return <p>Loading...</p>;
