@@ -79,3 +79,46 @@ class WorkExperienceUpdateSchema(Schema):
     description: str | None = None
     order: int | None = None
     skill_ids: list[int] | None = None
+
+
+class EducationSchema(Schema):
+    id: int
+    institution: str
+    location: str
+    degree_level: str
+    degree_title: str
+    major: str
+    minor: str
+    start_date: date
+    end_date: date | None = None
+    gpa: float | None = None
+    order: int
+    skills: list[SkillSchema]
+
+
+class EducationCreateSchema(Schema):
+    institution: str
+    location: str = ""
+    degree_level: str
+    degree_title: str = ""
+    major: str = ""
+    minor: str = ""
+    start_date: date
+    end_date: date | None = None
+    gpa: float | None = None
+    order: int = 0
+    skill_ids: list[int] = []
+
+
+class EducationUpdateSchema(Schema):
+    institution: str | None = None
+    location: str | None = None
+    degree_level: str | None = None
+    degree_title: str | None = None
+    major: str | None = None
+    minor: str | None = None
+    start_date: date | None = None
+    end_date: date | None = None
+    gpa: float | None = None
+    order: int | None = None
+    skill_ids: list[int] | None = None

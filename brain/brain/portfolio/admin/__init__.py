@@ -1,3 +1,4 @@
+from .education import EducationAdmin as EducationAdmin
 from .profile import ProfileAdmin as ProfileAdmin
 from .project import ProjectAdmin as ProjectAdmin
 from .skill import SkillAdmin as SkillAdmin
