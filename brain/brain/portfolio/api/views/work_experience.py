@@ -1,46 +1,11 @@
-from django.http import FileResponse
 from django.shortcuts import get_object_or_404
-from ninja import Router
-from ninja.errors import HttpError
 
-from brain.portfolio.api.schema import ProfileSchema
-from brain.portfolio.api.schema import ProfileUpdateSchema
-from brain.portfolio.api.schema import WorkExperienceCreateSchema
-from brain.portfolio.api.schema import WorkExperienceSchema
-from brain.portfolio.api.schema import WorkExperienceUpdateSchema
-from brain.portfolio.models import Profile
+from brain.portfolio.api.router import router
+from brain.portfolio.api.schemas import WorkExperienceCreateSchema
+from brain.portfolio.api.schemas import WorkExperienceSchema
+from brain.portfolio.api.schemas import WorkExperienceUpdateSchema
 from brain.portfolio.models import Skill
 from brain.portfolio.models import WorkExperience
-
-router = Router(tags=["portfolio"])
-
-
-def _get_profile() -> Profile:
-    """Return the singleton profile or 404."""
-    profile = Profile.objects.first()
-    if profile is None:
-        raise HttpError(404, "No profile found. Create one in the admin.")
-    return profile
-
-
-# ── Public endpoints
-
-
-@router.get("/profile/", response=ProfileSchema, auth=None)
-def get_profile(request):
-    return _get_profile()
-
-
-@router.get("/resume/", auth=None)
-def download_resume(request):
-    profile = _get_profile()
-    if not profile.resume:
-        raise HttpError(404, "No resume uploaded.")
-    return FileResponse(
-        profile.resume.open("rb"),
-        as_attachment=True,
-        filename=profile.resume.name.split("/")[-1],
-    )
 
 
 @router.get("/work-experience/", response=list[WorkExperienceSchema], auth=None)
@@ -58,18 +23,6 @@ def get_work_experience(request, experience_id: int):
         WorkExperience.objects.prefetch_related("skills"),
         pk=experience_id,
     )
-
-
-# ── Protected endpoints
-
-
-@router.patch("/profile/", response=ProfileSchema)
-def update_profile(request, data: ProfileUpdateSchema):
-    profile = _get_profile()
-    for attr, value in data.dict(exclude_unset=True).items():
-        setattr(profile, attr, value)
-    profile.save()
-    return profile
 
 
 @router.post("/work-experience/", response=WorkExperienceSchema)

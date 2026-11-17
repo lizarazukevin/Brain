@@ -2,7 +2,7 @@ from datetime import date
 
 from ninja import Schema
 
-from brain.portfolio.api.schema import SkillSchema
+from brain.portfolio.api.schemas.skill import SkillSchema
 
 
 class WorkExperienceSchema(Schema):

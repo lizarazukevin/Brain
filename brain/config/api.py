@@ -2,7 +2,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from ninja import NinjaAPI
 from ninja.security import django_auth
 
-from brain.portfolio.api.views import router as portfolio_router
+from brain.portfolio.api import router as portfolio_router
 from brain.users.api.views import router as user_router
 
 api = NinjaAPI(

@@ -1,0 +1,2 @@
+from brain.portfolio.api.views import profile as profile
+from brain.portfolio.api.views import work_experience as work_experience
