@@ -25,5 +25,5 @@ export function getWorkExperiences(signal?: AbortSignal) {
  * @returns Absolute URL string to the résumé file.
  */
 export function getResumeUrl(): string {
-  return `${import.meta.env.VITE_API_BASE_URL}/portfolio/resume/`;
+  return `${import.meta.env.VITE_API_BASE_URL}/portfolio/profile/resume/`;
 }
