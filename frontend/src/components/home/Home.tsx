@@ -1,4 +1,4 @@
-import { useProfile } from "../../hooks";
+import { useProfile } from "#/hooks";
 
 export function Home() {
   const { data: profile, isLoading, error } = useProfile();

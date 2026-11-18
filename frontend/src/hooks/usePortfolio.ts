@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProfile, getWorkExperiences } from "../api/portfolio";
+import { getProfile, getWorkExperiences } from "#/api/portfolio";
 
 export function useProfile() {
   return useQuery({

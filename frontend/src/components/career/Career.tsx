@@ -1,4 +1,4 @@
-import { useWorkExperiences } from "../../hooks";
+import { useWorkExperiences } from "#/hooks";
 
 export function Career() {
   const { data: experiences, isLoading, error } = useWorkExperiences();

@@ -4,7 +4,7 @@ import type { QueryClient } from "@tanstack/react-query";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 
-import { SITE_NAME, SITE_DESCRIPTION } from "../site";
+import { SITE_NAME, SITE_DESCRIPTION } from "#/site";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   component: RootLayout,
