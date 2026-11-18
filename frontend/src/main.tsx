@@ -5,6 +5,8 @@ import { router } from "./router";
 import { RouterProvider } from "@tanstack/react-router";
 import { queryClient } from "#/queryClient";
 
+import "./styles.css";
+
 createRoot(document.getElementById("app")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
