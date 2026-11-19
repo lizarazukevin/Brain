@@ -85,3 +85,4 @@ RUN DATABASE_URL="postgres://dummy" \
   python manage.py compilemessages
 
 ENTRYPOINT ["/entrypoint"]
+CMD ["/start"]
