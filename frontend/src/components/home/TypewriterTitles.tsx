@@ -26,7 +26,7 @@ interface State {
 
 const INITIAL_STATE: State = { titleIndex: 0, length: 0, phase: "typing" };
 
-function advance(state: State, titles: readonly string[]): String {
+function advance(state: State, titles: readonly string[]): State {
   const title = titles[state.titleIndex];
 
   switch (state.phase) {

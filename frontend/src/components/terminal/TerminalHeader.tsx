@@ -12,7 +12,7 @@ export function TerminalHeader() {
 
       {/* Title */}
       <div className="text-[10px] sm:text-xs text-gold/80 tracking-widest uppercase font-semibold">
-        SYS://PERSONAL.TERMINAL
+        SYS://KLIZ
       </div>
 
       {/* Llama Position */}
