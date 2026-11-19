@@ -18,4 +18,17 @@
   --shadow-terminal:
     0 0 0 1px rgba(255, 255, 255, 0.05), 0 0 30px rgba(209, 104, 52, 0.1),
     0 20px 40px rgba(0, 0, 0, 0.5);
+
+  /* Typewriter cursor blinking */
+  --animate-blink: blink 1.1s step-end infinite;
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
 }

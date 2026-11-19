@@ -1,5 +1,6 @@
 import { Terminal } from "#/components/terminal";
 import { useProfile } from "#/hooks/usePortfolio";
+import { TypewriterTitles } from "./TypewriterTitles";
 
 export function Home() {
   const { data: profile, isLoading, error } = useProfile();
@@ -18,10 +19,7 @@ export function Home() {
             {profile?.name}
           </h1>
 
-          <p className="text-gold text-sm sm:text-base">
-            Software Engineer <span className="text-space-border mx-2">|</span> Photographer{" "}
-            <span className="text-space-border mx-2">|</span> Tennis Player
-          </p>
+          <TypewriterTitles />
 
           <div className="py-8">
             <div className="w-full h-32 border border-dashed border-space-border flex items-center justify-center text-gold/50 text-sm">
