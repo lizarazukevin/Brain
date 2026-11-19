@@ -22,9 +22,17 @@ export function Home() {
           <TypewriterTitles />
 
           <div className="py-8">
-            <div className="w-full h-32 border border-dashed border-space-border flex items-center justify-center text-gold/50 text-sm">
-              [ AVATAR / CONTENT AREA ]
-            </div>
+            <p>
+              This portfolio serves as a testament to my academic and research pursuits,
+              encompassing personal projects and experiences that demonstrate dedication and a
+              desire to keep learning; in addition to my technical work, I plan on including some of
+              my own hobbies and interests to provide insight into who I am and my ideas.
+            </p>
+            <br />
+            <p>
+              I welcome collaboration opportunities and discussion regarding Web Development,
+              Reinforcement Learning, and AI Security, so feel free to reach out!
+            </p>
           </div>
         </div>
       </Terminal>
