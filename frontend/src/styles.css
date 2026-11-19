@@ -33,6 +33,10 @@
   }
 }
 
+html, body {
+  overscroll-behavior: none;
+}
+
 /** Backdrop terminal glow **/
 .terminal-glow {
   position: absolute;
