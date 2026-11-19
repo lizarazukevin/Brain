@@ -4,18 +4,21 @@ export default defineRailway(() => {
     const db = postgres("postgres");
 
     const backend = service("Brain Backend", {
-        source: github("lizarazukevin/brain", {
-            rootDirectory: "brain",
+        source: github("lizarazukevin/Brain", {
+            rootDirectory: "/brain",
         }),
+        build: {
+            builder: "DOCKERFILE",
+            dockerfilePath: "/brain/compose/production/django/Dockerfile",
+        },
         env: {
-            RAILWAY_DOCKERFILE_PATH: "compose/production/django/Dockerfile",
             DATABASE_URL: db.env.DATABASE_URL,
         }
     });
 
     const frontend = service("Brain Frontend", {
-        source: github("lizarazukevin/brain", {
-            rootDirectory: "frontend",
+        source: github("lizarazukevin/Brain", {
+            rootDirectory: "/frontend",
         }),
         env: {
             VITE_API_URL: preserve(),
