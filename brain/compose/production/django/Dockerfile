@@ -78,6 +78,10 @@ RUN chown django:django ${APP_HOME}
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
 
+# Put the venv on PATH for console/SSH shells (ENV above only reaches the app process)
+RUN echo 'export PATH="/app/.venv/bin:$PATH"' >> /etc/profile \
+  && echo 'export PATH="/app/.venv/bin:$PATH"' >> /etc/bash.bashrc
+
 USER django
 
 RUN DATABASE_URL="postgres://dummy" \

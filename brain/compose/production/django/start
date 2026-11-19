@@ -5,6 +5,15 @@ set -o pipefail
 set -o nounset
 
 
+python /app/manage.py migrate --noinput
+
+# Optional: create a superuser on boot when credentials are provided as env vars.
+# Idempotent: skipped if the user already exists.
+if [ -n "${DJANGO_SUPERUSER_USERNAME:-}" ] && [ -n "${DJANGO_SUPERUSER_PASSWORD:-}" ]; then
+  python /app/manage.py createsuperuser --noinput \
+    --email "${DJANGO_SUPERUSER_EMAIL:-}" || echo "Superuser already exists or could not be created; continuing"
+fi
+
 python /app/manage.py collectstatic --noinput
 
 compress_enabled() {
