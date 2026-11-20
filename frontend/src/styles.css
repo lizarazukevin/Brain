@@ -38,6 +38,33 @@ body {
   overscroll-behavior: none;
 }
 
+/**
+ * Terminal-themed scrollbars.
+ */
+* {
+  scrollbar-color: var(--color-space-border) var(--color-space-dark);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-space-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-space-border);
+  border-radius: 999px;
+  border: 2px solid var(--color-space-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
 /** Backdrop terminal glow **/
 .terminal-glow {
   position: absolute;
