@@ -10,7 +10,7 @@ class Profile(models.Model):
 
     name = models.CharField(_("name"), max_length=100)
     tagline = models.CharField(_("tagline"), max_length=300, blank=True, default="")
-    bio = models.CharField(_("bio"), blank=True, default="")
+    bio = models.TextField(_("bio"), blank=True, default="")
     avatar = models.ImageField(
         _("avatar"),
         upload_to="portfolio/avatar",
@@ -25,6 +25,8 @@ class Profile(models.Model):
     )
     linkedin_url = models.URLField(_("linkedin url"), blank=True, default="")
     github_url = models.URLField(_("github url"), blank=True, default="")
+    medium_url = models.URLField(_("medium url"), blank=True, default="")
+    email = models.EmailField(_("email"), blank=True, default="")
 
     class Meta:
         verbose_name = _("profile")

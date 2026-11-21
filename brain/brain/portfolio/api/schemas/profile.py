@@ -12,6 +12,8 @@ class ProfileSchema(Schema):
     resume: str | None = None
     linkedin_url: str
     github_url: str
+    medium_url: str
+    email: str
 
     @staticmethod
     def resolve_avatar(obj: Profile, context):
@@ -34,3 +36,5 @@ class ProfileUpdateSchema(Schema):
     bio: str | None = None
     linkedin_url: str | None = None
     github_url: str | None = None
+    medium_url: str | None = None
+    email: str | None = None

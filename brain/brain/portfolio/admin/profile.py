@@ -10,7 +10,7 @@ class ProfileAdmin(admin.ModelAdmin):
         (
             _("Personal Info"),
             {
-                "fields": ("name", "tagline", "bio"),
+                "fields": ("name", "tagline", "bio", "email"),
             },
         ),
         (
@@ -22,7 +22,7 @@ class ProfileAdmin(admin.ModelAdmin):
         (
             _("Links"),
             {
-                "fields": ("linkedin_url", "github_url"),
+                "fields": ("linkedin_url", "github_url", "medium_url"),
             },
         ),
     )

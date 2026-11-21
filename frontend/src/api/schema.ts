@@ -17,6 +17,8 @@ export const profileSchema = z.object({
   resume: z.string().nullable(),
   linkedin_url: z.string(),
   github_url: z.string(),
+  medium_url: z.string(),
+  email: z.string(),
 });
 
 export const workExperienceSchema = z.object({
