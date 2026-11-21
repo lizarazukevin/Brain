@@ -18,7 +18,7 @@ export function Terminal({ children, className = "" }: TerminalProps) {
             bg-space-dark/75 backdrop-blur-xl backdrop-saturate-150
             rounded-none lg:rounded-xl
             overflow-hidden
-            shadow-terminal-edge
+            shadow-terminal
             ${className}
           `}
         >

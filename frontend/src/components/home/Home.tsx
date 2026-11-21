@@ -1,37 +1,59 @@
 import { Terminal } from "#/components/terminal";
 import { useProfile } from "#/hooks/usePortfolio";
-import { TypewriterTitles } from "./TypewriterTitles";
+
+import { BootHeader } from "./BootHeader";
+import { ConnectLinks } from "./ConnectLinks";
+import { FeaturedProjects } from "./FeaturedProjects";
+import { ProfileBio } from "./ProfileBio";
+import { VisualFeed } from "./VisualFeed";
 
 export function Home() {
   const { data: profile, isLoading, error } = useProfile();
 
+  // LOADING
+  if (isLoading) {
+    return (
+      <Terminal>
+        <p className="text-gold animate-pulse font-mono">~ initializing secure connection...</p>
+      </Terminal>
+    );
+  }
+
+  // ERROR
+  if (error) {
+    return (
+      <Terminal>
+        <p className="text-red-500 font-mono">~ err: failed to load profile</p>
+      </Terminal>
+    );
+  }
+
+  if (!profile) {
+    return null;
+  }
+
   return (
     <Terminal>
-      <div className="space-y-4">
-        <p className="text-gold text-sm opacity-80">~ /sys/boot</p>
+      {/* MULTIPLEXER LAYOUT */}
+      <div className="flex flex-col h-full font-mono">
+        {/* TOP PANE: identity */}
+        <div className="border-b border-space-border/60 pb-6 mb-6">
+          <BootHeader name={profile.name} />
+        </div>
 
-        <p className="text-llama text-sm">
-          &gt; whoami<span className="animate-pulse">_</span>
-        </p>
+        {/* BOTTOM PANES: bio/projects | visual feed/connect */}
+        <div className="grid grid-cols-1 md:grid-cols-3 flex-1">
+          {/* LEFT PANE (Bio + Projects) */}
+          <div className="md:col-span-2 flex flex-col md:pr-6 md:border-r border-space-border/60 pb-6 md:pb-0">
+            <ProfileBio content={profile.bio} />
+            <FeaturedProjects />
+          </div>
 
-        <h1 className="text-4xl sm:text-6xl font-bold text-offwhite pt-2 tracking-tight">
-          {profile?.name}
-        </h1>
-
-        <TypewriterTitles />
-
-        <div className="py-8">
-          <p>
-            This portfolio serves as a testament to my academic and research pursuits, encompassing
-            personal projects and experiences that demonstrate dedication and a desire to keep
-            learning; in addition to my technical work, I plan on including some of my own hobbies
-            and interests to provide insight into who I am and my ideas.
-          </p>
-          <br />
-          <p>
-            I welcome collaboration opportunities and discussion regarding Web Development,
-            Reinforcement Learning, and AI Security, so feel free to reach out!
-          </p>
+          {/* RIGHT PANE (Photo + Links) */}
+          <div className="md:pl-6 flex flex-col pt-6 md:pt-0 pb-6 md:pb-0">
+            <VisualFeed avatar={profile.avatar} name={profile.name} />
+            <ConnectLinks githubUrl={profile.github_url} linkedinUrl={profile.linkedin_url} />
+          </div>
         </div>
       </div>
     </Terminal>

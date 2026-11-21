@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   /* Sharper, darker palette */
@@ -98,4 +99,24 @@ body {
   mask:
     linear-gradient(#000 0 0) content-box exclude,
     linear-gradient(#000 0 0);
+}
+
+/** Markdown Formatting **/
+.docs-prose {
+  --tw-prose-body: var(--color-offwhite);
+  --tw-prose-headings: var(--color-offwhite);
+  --tw-prose-lead: var(--color-offwhite);
+  --tw-prose-links: var(--color-llama);
+  --tw-prose-bold: var(--color-offwhite);
+  --tw-prose-counters: var(--color-gold);
+  --tw-prose-bullets: var(--color-gold);
+  --tw-prose-hr: var(--color-space-border);
+  --tw-prose-quotes: var(--color-offwhite);
+  --tw-prose-quote-borders: var(--color-llama);
+  --tw-prose-captions: var(--color-gold);
+  --tw-prose-code: var(--color-llama);
+  --tw-prose-pre-code: var(--color-offwhite);
+  --tw-prose-pre-bg: var(--color-space-light);
+  --tw-prose-th-borders: var(--color-space-border);
+  --tw-prose-td-borders: var(--color-space-border);
 }
