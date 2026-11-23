@@ -20,6 +20,9 @@ export default defineRailway(() => {
     networking: { privateNetworkEndpoint: "brain-backend" },
     env: {
       DATABASE_URL: db.env.DATABASE_URL,
+      SENTRY_DSN: preserve(),
+      SENTRY_ENVIRONMENT: preserve(),
+      SENTRY_TRACES_SAMPLE_RATE: preserve(),
     },
   });
 
