@@ -52,7 +52,12 @@ export function Home() {
           {/* RIGHT PANE (Photo + Links) */}
           <div className="md:pl-6 flex flex-col pt-6 md:pt-0 pb-6 md:pb-0">
             <VisualFeed avatar={profile.avatar} name={profile.name} />
-            <ConnectLinks githubUrl={profile.github_url} linkedinUrl={profile.linkedin_url} />
+            <ConnectLinks
+              githubUrl={profile.github_url}
+              linkedinUrl={profile.linkedin_url}
+              mediumUrl={profile.medium_url}
+              email={profile.email}
+            />
           </div>
         </div>
       </div>

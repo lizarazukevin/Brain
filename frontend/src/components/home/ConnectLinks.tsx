@@ -3,6 +3,8 @@ import { SectionLabel } from "./SectionLabel";
 type ConnectLinksProps = {
   githubUrl?: string;
   linkedinUrl?: string;
+  mediumUrl?: string;
+  email?: string;
 };
 
 type ConnectItemProps = {
@@ -24,15 +26,15 @@ function ConnectItem({ href, label, external = false }: ConnectItemProps) {
   );
 }
 
-export function ConnectLinks({ githubUrl, linkedinUrl }: ConnectLinksProps) {
+export function ConnectLinks({ githubUrl, linkedinUrl, mediumUrl, email }: ConnectLinksProps) {
   return (
     <section className="mt-8 pt-6 border-t border-space-border/30 flex-1">
       <SectionLabel>// CONNECT</SectionLabel>
       <div className="flex flex-col gap-3 text-sm">
         {githubUrl && <ConnectItem href={githubUrl} label="GitHub" external />}
         {linkedinUrl && <ConnectItem href={linkedinUrl} label="LinkedIn" external />}
-        {/* TODO: replace with `profile.email` once the API exposes it. */}
-        <ConnectItem href="mailto:hello@example.com" label="Email" />
+        {mediumUrl && <ConnectItem href={mediumUrl} label="Medium" external />}
+        <ConnectItem href={`mailto:${email}`} label="Email" />
       </div>
     </section>
   );
