@@ -29,7 +29,7 @@ def download_resume(request):
         raise HttpError(404, "No resume uploaded.")
     return FileResponse(
         profile.resume.open("rb"),
-        as_attachment=True,
+        as_attachment=False,
         filename=profile.resume.name.split("/")[-1],
     )
 

@@ -1,11 +1,11 @@
 import { Terminal } from "#/components/terminal";
-import { useProfile } from "#/hooks/usePortfolio";
-
 import { BootHeader } from "./boot-header/BootHeader";
 import { ConnectLinks } from "./connect-links/ConnectLinks";
 import { FeaturedProjects } from "./featured-projects/FeaturedProjects";
 import { ProfileBio } from "./profile-bio/ProfileBio";
 import { VisualFeed } from "./visual-feed/VisualFeed";
+import { ResumeAction } from "./resume-action/ResumeAction";
+import { useProfile } from "#/hooks/usePortfolio";
 
 export function Home() {
   const { data: profile, isLoading, error } = useProfile();
@@ -44,7 +44,11 @@ export function Home() {
           </div>
 
           <div className="md:pl-6 flex flex-col pt-6 md:pt-0 pb-6 md:pb-0">
-            <VisualFeed avatar={profile.avatar} name={profile.name} />
+            <div className="w-full max-w-[240px] mx-auto md:mx-0">
+              <VisualFeed avatar={profile.avatar} name={profile.name} />
+              {profile.resume && <ResumeAction hasResume={profile.resume} />}
+            </div>
+
             <ConnectLinks
               githubUrl={profile.github_url}
               linkedinUrl={profile.linkedin_url}

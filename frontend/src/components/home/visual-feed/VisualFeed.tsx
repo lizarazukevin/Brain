@@ -32,7 +32,7 @@ export function VisualFeed({ avatar, name }: VisualFeedProps) {
       <SectionLabel>// VISUAL.FEED</SectionLabel>
 
       {/* p-2 leaves a gutter so the brackets sit just outside the image */}
-      <div className="relative w-full max-w-[240px] mx-auto md:mx-0 p-2">
+      <div className="relative w-full p-2">
         <CornerBrackets />
 
         <div className="bg-space-light/40 ring-1 ring-white/10">
