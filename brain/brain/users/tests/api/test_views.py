@@ -22,7 +22,7 @@ def user():
 
 
 def test_list_users_as_anonymous_user(client: Client):
-    response = client.get(reverse("api:list_users"))
+    response = client.get(reverse("v1:list_users"))
 
     assert response.status_code == HTTPStatus.UNAUTHORIZED
 
@@ -32,7 +32,7 @@ def test_list_users_as_authenticated_user(client: Client, user: User):
     # Another user, excluded from the response
     UserFactory.create()
 
-    response = client.get(reverse("api:list_users"))
+    response = client.get(reverse("v1:list_users"))
 
     assert response.status_code == HTTPStatus.OK
     assert response.json() == [
@@ -49,7 +49,7 @@ def test_retrieve_current_user(client: Client, user: User):
     client.force_login(user)
 
     response = client.get(
-        reverse("api:retrieve_current_user"),
+        reverse("v1:retrieve_current_user"),
     )
 
     assert response.status_code == HTTPStatus.OK
@@ -65,7 +65,7 @@ def test_retrieve_user(client: Client, user: User):
     client.force_login(user)
 
     response = client.get(
-        reverse("api:retrieve_user", kwargs={"username": user.username}),
+        reverse("v1:retrieve_user", kwargs={"username": user.username}),
     )
 
     assert response.status_code == HTTPStatus.OK
@@ -82,7 +82,7 @@ def test_retrieve_another_user(client: Client, user: User):
     user_2 = UserFactory.create()
 
     response = client.get(
-        reverse("api:retrieve_user", kwargs={"username": user_2.username}),
+        reverse("v1:retrieve_user", kwargs={"username": user_2.username}),
     )
 
     assert response.status_code == HTTPStatus.NOT_FOUND
@@ -94,7 +94,7 @@ def test_update_current_user(client: Client):
     client.force_login(user)
 
     response = client.patch(
-        reverse("api:update_current_user"),
+        reverse("v1:update_current_user"),
         data='{"name": "New Name", "username": "old"}',
         content_type="application/json",
     )
@@ -113,7 +113,7 @@ def test_update_user(client: Client):
     client.force_login(user)
 
     response = client.patch(
-        reverse("api:update_user", kwargs={"username": "old"}),
+        reverse("v1:update_user", kwargs={"username": "old"}),
         data='{"name": "New Name", "username": "old"}',
         content_type="application/json",
     )

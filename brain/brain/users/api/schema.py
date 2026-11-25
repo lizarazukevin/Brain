@@ -19,4 +19,4 @@ class UserSchema(ModelSchema):
 
     @staticmethod
     def resolve_url(obj: User):
-        return reverse("api:retrieve_user", kwargs={"username": obj.username})
+        return reverse("v1:retrieve_user", kwargs={"username": obj.username})
