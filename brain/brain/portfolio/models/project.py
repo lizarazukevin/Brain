@@ -22,6 +22,7 @@ class Project(models.Model):
         verbose_name=_("skills"),
     )
     order = models.PositiveIntegerField(_("display order"), default=0)
+    logo_url = models.URLField(_("logo url"), blank=True, default="")
 
     class Meta:
         ordering = ["-start_date", "order"]

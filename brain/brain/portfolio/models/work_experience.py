@@ -9,6 +9,15 @@ class WorkExperience(models.Model):
     A job or role on the career timeline.
     """
 
+    EMPLOYMENT_TYPES = [
+        ("full_time", _("Full-Time")),
+        ("part_time", _("Part-Time")),
+        ("internship", _("Internship")),
+        ("design_team", _("Design Team")),
+        ("research", _("Research")),
+        ("executive", _("Executive")),
+    ]
+
     company = models.CharField(_("company"), max_length=200)
     location = models.CharField(_("location"), max_length=200, blank=True, default="")
     role = models.CharField(_("role"), max_length=200)
@@ -23,6 +32,13 @@ class WorkExperience(models.Model):
         verbose_name=_("skills"),
     )
     order = models.PositiveIntegerField(_("display order"), default=0)
+    employment_type = models.CharField(
+        _("employment type"),
+        max_length=20,
+        choices=EMPLOYMENT_TYPES,
+        blank=True,
+    )
+    logo_url = models.URLField(_("logo url"), blank=True, default="")
 
     class Meta:
         ordering = ["-start_date", "order"]

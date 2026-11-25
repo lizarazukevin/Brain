@@ -14,3 +14,4 @@ class ProjectSchema(Schema):
     description: str
     order: int
     skills: list[SkillSchema]
+    logo_url: str | None = None

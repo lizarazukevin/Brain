@@ -35,6 +35,8 @@ class Education(models.Model):
     end_date = models.DateField(_("end date"), blank=True, null=True)
     gpa = models.FloatField(_("gpa"), blank=True, null=True)
     order = models.PositiveIntegerField(_("display order"), default=0)
+    description = models.TextField(_("description"), blank=True, default="")
+    logo_url = models.URLField(_("logo url"), blank=True, default="")
 
     class Meta:
         ordering = ["-start_date", "order"]

@@ -16,6 +16,8 @@ class WorkExperienceSchema(Schema):
     description: str
     order: int
     skills: list[SkillSchema]
+    employment_type: str | None = None
+    logo_url: str | None = None
 
 
 class WorkExperienceCreateSchema(Schema):
@@ -28,6 +30,8 @@ class WorkExperienceCreateSchema(Schema):
     description: str = ""
     order: int = 0
     skill_ids: list[int] = []
+    employment_type: str | None = None
+    logo_url: str | None = None
 
 
 class WorkExperienceUpdateSchema(Schema):
@@ -40,3 +44,5 @@ class WorkExperienceUpdateSchema(Schema):
     description: str | None = None
     order: int | None = None
     skill_ids: list[int] | None = None
+    employment_type: str | None = None
+    logo_url: str | None = None

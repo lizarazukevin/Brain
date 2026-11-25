@@ -17,8 +17,16 @@ class WorkExperienceSkillInline(admin.TabularInline):
 
 @admin.register(WorkExperience)
 class WorkExperienceAdmin(admin.ModelAdmin):
-    list_display = ["role", "company", "location", "start_date", "end_date", "order"]
-    list_filter = ["company"]
+    list_display = [
+        "role",
+        "company",
+        "location",
+        "employment_type",
+        "start_date",
+        "end_date",
+        "order",
+    ]
+    list_filter = ["company", "employment_type"]
     search_fields = ["role", "company", "objective"]
     ordering = ["-start_date", "order"]
     inlines = [WorkExperienceSkillInline]
@@ -26,7 +34,7 @@ class WorkExperienceAdmin(admin.ModelAdmin):
         (
             None,
             {
-                "fields": ("company", "location", "role"),
+                "fields": ("company", "location", "role", "employment_type"),
             },
         ),
         (
@@ -38,7 +46,7 @@ class WorkExperienceAdmin(admin.ModelAdmin):
         (
             _("Details"),
             {
-                "fields": ("objective", "description", "order"),
+                "fields": ("objective", "description", "logo_url", "order"),
             },
         ),
     )

@@ -15,6 +15,8 @@ class EducationSchema(Schema):
     end_date: date | None = None
     gpa: float | None = None
     order: int
+    description: str | None = None
+    logo_url: str | None = None
 
 
 class EducationCreateSchema(Schema):
@@ -28,6 +30,8 @@ class EducationCreateSchema(Schema):
     end_date: date | None = None
     gpa: float | None = None
     order: int = 0
+    description: str | None = None
+    logo_url: str | None = None
 
 
 class EducationUpdateSchema(Schema):
@@ -41,3 +45,5 @@ class EducationUpdateSchema(Schema):
     end_date: date | None = None
     gpa: float | None = None
     order: int | None = None
+    description: str | None = None
+    logo_url: str | None = None

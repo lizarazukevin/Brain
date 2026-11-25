@@ -38,6 +38,6 @@ class EducationAdmin(admin.ModelAdmin):
         ),
         (
             _("Details"),
-            {"fields": ("gpa", "order")},
+            {"fields": ("gpa", "description", "logo_url", "order")},
         ),
     )

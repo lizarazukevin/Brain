@@ -30,5 +30,5 @@ class ProjectAdmin(admin.ModelAdmin):
                 "fields": ("start_date", "end_date"),
             },
         ),
-        (_("Details"), {"fields": ("objective", "description", "order")}),
+        (_("Details"), {"fields": ("objective", "description", "logo_url", "order")}),
     )
