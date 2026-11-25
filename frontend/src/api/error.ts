@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+/** Request failed before a usable response: network error, timeout, or non-2xx status. */
 export class ApiError extends Error {
   status: number;
 
@@ -10,6 +11,7 @@ export class ApiError extends Error {
   }
 }
 
+/** Response decoded as JSON but failed zod schema validation. */
 export class ApiValidationError extends Error {
   issues: z.ZodIssue[];
 

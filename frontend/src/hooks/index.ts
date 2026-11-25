@@ -1,3 +1,11 @@
-export { useProfile } from "./usePortfolio";
-export { useWorkExperiences } from "./usePortfolio";
+export {
+  useProfile,
+  profileQueryOptions,
+  useWorkExperiences,
+  workExperiencesQueryOptions,
+  useProjects,
+  projectsQueryOptions,
+  useEducation,
+  educationQueryOptions,
+} from "./usePortfolio";
 export { useMediaQuery } from "./useMediaQuery";

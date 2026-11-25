@@ -1,32 +1,51 @@
+import { useMemo, useState } from "react";
 import { Terminal } from "#/components/terminal";
-import { useWorkExperiences } from "#/hooks";
+import { CareerHeader } from "./header/CareerHeader";
+import { CareerTimeline } from "./timeline/CareerTimeline";
+import { FlowToggle } from "./controls/FlowToggle";
+import { TimelineFilters } from "./controls/TimelineFilters";
+import { computeStats, groupByYear } from "./timeline-data/timeline";
+import { useTimelineItems } from "./timeline-data/useTimelineItems";
+import type { TimelineFilter } from "./timeline-data/types";
 
 export function Career() {
-  const { data: experiences, isLoading, error } = useWorkExperiences();
+  const items = useTimelineItems();
+  const [filter, setFilter] = useState<TimelineFilter>("all");
+  const [newestFirst, setNewestFirst] = useState(true);
+
+  const stats = useMemo(() => computeStats(items), [items]);
+
+  const filter_counts = useMemo(() => {
+    const c: Record<TimelineFilter, number> = {
+      all: items.length,
+      experience: 0,
+      project: 0,
+      education: 0,
+    };
+    for (const item of items) c[item.type]++;
+    return c;
+  }, [items]);
+
+  const years = useMemo(() => {
+    const visible = filter === "all" ? items : items.filter((i) => i.type === filter);
+    const groups = groupByYear(visible);
+    return newestFirst ? groups : groups.reverse();
+  }, [items, filter, newestFirst]);
 
   return (
-    <Terminal>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>Error: {error.message}</p>
-      ) : (
-        <ul>
-          {experiences?.map((exp) => (
-            <li key={exp.id}>
-              <h3>
-                {exp.role} @ {exp.company}
-              </h3>
-              <p>{exp.objective}</p>
-              <p>
-                {exp.location} — {exp.start_date} to {exp.end_date ?? "Present"}
-              </p>
-              <p style={{ whiteSpace: "pre-line" }}>{exp.description}</p>
-              {exp.skills.length > 0 && <p>{exp.skills.map((s) => s.name).join(" · ")}</p>}
-            </li>
-          ))}
-        </ul>
-      )}
+    <Terminal fill>
+      <div className="flex min-h-0 flex-1 flex-col font-mono">
+        <div className="mb-4 shrink-0 border-b border-space-border/60 pb-4">
+          <CareerHeader stats={stats} />
+        </div>
+
+        <div className="mb-3 flex shrink-0 items-center justify-end gap-2">
+          <FlowToggle newestFirst={newestFirst} onToggle={() => setNewestFirst((v) => !v)} />
+          <TimelineFilters active={filter} counts={filter_counts} onChange={setFilter} />
+        </div>
+
+        <CareerTimeline key={`${filter}-${newestFirst}`} years={years} />
+      </div>
     </Terminal>
   );
 }

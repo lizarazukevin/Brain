@@ -1,4 +1,4 @@
-import { SectionLabel } from "./SectionLabel";
+import { SectionLabel } from "../section-label/SectionLabel";
 
 type FeaturedProject = {
   name: string;

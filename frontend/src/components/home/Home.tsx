@@ -1,16 +1,15 @@
 import { Terminal } from "#/components/terminal";
 import { useProfile } from "#/hooks/usePortfolio";
 
-import { BootHeader } from "./BootHeader";
-import { ConnectLinks } from "./ConnectLinks";
-import { FeaturedProjects } from "./FeaturedProjects";
-import { ProfileBio } from "./ProfileBio";
-import { VisualFeed } from "./VisualFeed";
+import { BootHeader } from "./boot-header/BootHeader";
+import { ConnectLinks } from "./connect-links/ConnectLinks";
+import { FeaturedProjects } from "./featured-projects/FeaturedProjects";
+import { ProfileBio } from "./profile-bio/ProfileBio";
+import { VisualFeed } from "./visual-feed/VisualFeed";
 
 export function Home() {
   const { data: profile, isLoading, error } = useProfile();
 
-  // LOADING
   if (isLoading) {
     return (
       <Terminal>
@@ -19,7 +18,6 @@ export function Home() {
     );
   }
 
-  // ERROR
   if (error) {
     return (
       <Terminal>
@@ -34,22 +32,17 @@ export function Home() {
 
   return (
     <Terminal>
-      {/* MULTIPLEXER LAYOUT */}
       <div className="flex flex-col h-full font-mono">
-        {/* TOP PANE: identity */}
         <div className="border-b border-space-border/60 pb-6 mb-6">
           <BootHeader name={profile.name} />
         </div>
 
-        {/* BOTTOM PANES: bio/projects | visual feed/connect */}
         <div className="grid grid-cols-1 md:grid-cols-3 flex-1">
-          {/* LEFT PANE (Bio + Projects) */}
           <div className="md:col-span-2 flex flex-col md:pr-6 md:border-r border-space-border/60 pb-6 md:pb-0">
             <ProfileBio content={profile.bio} />
             <FeaturedProjects />
           </div>
 
-          {/* RIGHT PANE (Photo + Links) */}
           <div className="md:pl-6 flex flex-col pt-6 md:pt-0 pb-6 md:pb-0">
             <VisualFeed avatar={profile.avatar} name={profile.name} />
             <ConnectLinks

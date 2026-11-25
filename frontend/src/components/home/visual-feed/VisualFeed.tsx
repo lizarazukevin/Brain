@@ -1,4 +1,4 @@
-import { SectionLabel } from "./SectionLabel";
+import { SectionLabel } from "../section-label/SectionLabel";
 
 const BRACKET_CORNERS = [
   "top-0 left-0 border-t-2 border-l-2",
