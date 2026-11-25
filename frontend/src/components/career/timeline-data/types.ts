@@ -22,12 +22,14 @@ export const GLOW_BY_TYPE: Record<TimelineType, string> = {
 const GLOW_BY_COMPANY: Record<string, string> = {
   aws: "#FF9900",
   rubrik: "#00B2A9",
-  mitre: "#002B49",
+  mitre: "#4285F4",
   codepath: "#00C385",
-  google: "#4285F4",
   "virginia tech": "#861F41",
   gitkord: "#5865f2",
   wakefield: "#4CBB17",
+  codepath: "#00C385",
+  "shpe @ virginia tech": "#72A9BE",
+  "rocksat-x @ virginia tech": "#F3E81B",
 };
 
 export interface TimelineItem {
