@@ -342,6 +342,15 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+# Portfolio stats (GitHub / Medium)
+# ------------------------------------------------------------------------------
+# Key for the unofficial Medium API (https://mediumapi.com), used to fetch the
+# exact article count. The article count is unavailable without it.
+MEDIUM_RAPIDAPI_KEY = env("MEDIUM_RAPIDAPI_KEY", default="")
+# How long fetched stats are cached before being refetched (seconds). A daily
+# refresh keeps the unofficial Medium API well within its free tier of
+# 150 requests/month.
+PORTFOLIO_STATS_CACHE_TTL = env.int("PORTFOLIO_STATS_CACHE_TTL", default=86400)
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[])
 CSRF_TRUSTED_ORIGINS = env.list(
     "CSRF_TRUSTED_ORIGINS",

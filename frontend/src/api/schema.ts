@@ -21,6 +21,20 @@ export const profileSchema = z.object({
   email: z.string(),
 });
 
+export const githubStatsSchema = z.object({
+  repos: z.number().int().nullable(),
+  prs: z.number().int().nullable(),
+});
+
+export const mediumStatsSchema = z.object({
+  articles: z.number().int().nullable(),
+});
+
+export const statsSchema = z.object({
+  github: githubStatsSchema.nullable(),
+  medium: mediumStatsSchema.nullable(),
+});
+
 export const workExperienceSchema = z.object({
   id: z.number().int().positive(),
   company: z.string(),
@@ -72,6 +86,9 @@ export const educationListSchema = z.array(educationSchema);
 
 export type Skill = z.infer<typeof skillSchema>;
 export type Profile = z.infer<typeof profileSchema>;
+export type GithubStats = z.infer<typeof githubStatsSchema>;
+export type MediumStats = z.infer<typeof mediumStatsSchema>;
+export type Stats = z.infer<typeof statsSchema>;
 export type WorkExperience = z.infer<typeof workExperienceSchema>;
 export type Project = z.infer<typeof projectSchema>;
 export type Education = z.infer<typeof educationSchema>;

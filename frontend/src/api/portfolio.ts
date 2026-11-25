@@ -1,14 +1,20 @@
 import { apiClient } from "./client";
 import {
-  profileSchema,
-  workExperienceListSchema,
-  projectListSchema,
   educationListSchema,
+  profileSchema,
+  projectListSchema,
+  statsSchema,
+  workExperienceListSchema,
 } from "./schema";
 
 /** Fetches the singleton portfolio profile. */
 export function getProfile(signal?: AbortSignal) {
   return apiClient("/portfolio/profile/", { schema: profileSchema, signal });
+}
+
+/** Fetches aggregated GitHub/Medium stats shown in the terminal footer. */
+export function getStats(signal?: AbortSignal) {
+  return apiClient("/portfolio/stats/", { schema: statsSchema, signal });
 }
 
 /** Fetches all work experiences. */
