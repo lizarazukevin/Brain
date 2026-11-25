@@ -1,5 +1,11 @@
 import { useQuery, queryOptions } from "@tanstack/react-query";
-import { getEducation, getProfile, getProjects, getWorkExperiences } from "#/api/portfolio";
+import {
+  getEducation,
+  getProfile,
+  getProjects,
+  getStats,
+  getWorkExperiences,
+} from "#/api/portfolio";
 
 const STALE_TIME = 30 * 60 * 1000;
 
@@ -16,9 +22,14 @@ export const workExperiencesQueryOptions = () =>
   resourceQueryOptions("workExperiences", getWorkExperiences);
 export const projectsQueryOptions = () => resourceQueryOptions("projects", getProjects);
 export const educationQueryOptions = () => resourceQueryOptions("education", getEducation);
+export const statsQueryOptions = () => resourceQueryOptions("stats", getStats);
 
 export function useProfile() {
   return useQuery(profileQueryOptions());
+}
+
+export function useStats() {
+  return useQuery(statsQueryOptions());
 }
 
 export function useWorkExperiences() {
