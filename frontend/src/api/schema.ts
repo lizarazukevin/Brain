@@ -32,10 +32,46 @@ export const workExperienceSchema = z.object({
   description: z.string(),
   order: z.number().int().nonnegative(),
   skills: z.array(skillSchema),
+  employment_type: z.string(),
+  logo_url: z.string().nullable(),
 });
 
 export const workExperienceListSchema = z.array(workExperienceSchema);
 
+export const projectSchema = z.object({
+  id: z.number().int().positive(),
+  name: z.string(),
+  start_date: isoDate,
+  end_date: isoDate.nullable(),
+  objective: z.string(),
+  description: z.string(),
+  skills: z.array(skillSchema),
+  order: z.number().int().nonnegative(),
+  logo_url: z.string().nullable(),
+});
+
+export const projectListSchema = z.array(projectSchema);
+
+export const educationSchema = z.object({
+  id: z.number().int().positive(),
+  institution: z.string(),
+  description: z.string(),
+  location: z.string(),
+  degree_level: z.string(),
+  degree_title: z.string(),
+  major: z.string(),
+  minor: z.string().nullable(),
+  start_date: isoDate,
+  end_date: isoDate.nullable(),
+  gpa: z.float64(),
+  order: z.number().int().nonnegative(),
+  logo_url: z.string().nullable(),
+});
+
+export const educationListSchema = z.array(educationSchema);
+
 export type Skill = z.infer<typeof skillSchema>;
 export type Profile = z.infer<typeof profileSchema>;
 export type WorkExperience = z.infer<typeof workExperienceSchema>;
+export type Project = z.infer<typeof projectSchema>;
+export type Education = z.infer<typeof educationSchema>;

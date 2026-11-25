@@ -1,5 +1,5 @@
 import ReactMarkdown from "react-markdown";
-import { SectionLabel } from "./SectionLabel";
+import { SectionLabel } from "../section-label/SectionLabel";
 
 type ProfileBioProps = {
   content: string;

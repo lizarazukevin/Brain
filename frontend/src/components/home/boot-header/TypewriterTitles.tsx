@@ -45,27 +45,15 @@ function advance(state: State, titles: readonly string[]): State {
   }
 }
 
-/**
- * Cycles through `titles`, typing, holding, then deleting them.
- */
+/** Cycles through `titles`, typing, holding, then deleting them. */
 function useTypewriter(titles: readonly string[]) {
-  // STATE
-  // Reducer owns animation state (role, length, phase).
-  // Every update runs through `advance`, only event is time passing.
   const [state, tick] = useReducer((s: State) => advance(s, titles), INITIAL_STATE);
 
-  // SCHEDULING
-  // After rendering, schedule exactly one future tick.
   useEffect(() => {
     const id = setTimeout(tick, DELAY_MS[state.phase]);
-
-    // CLEANUP
-    // Cancel pending timer if state changes first or component unmounts.
     return () => clearTimeout(id);
   }, [state]);
 
-  // DERIVED VALUES
-  // Nothing below is stored in state, view uses `holding` to decide cursor blink.
   return {
     text: titles[state.titleIndex].slice(0, state.length),
     isHolding: state.phase === "holding",
