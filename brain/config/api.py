@@ -6,7 +6,7 @@ from brain.portfolio.api import router as portfolio_router
 from brain.users.api.views import router as user_router
 
 api = NinjaAPI(
-    urls_namespace="api",
+    urls_namespace="v1",
     docs_decorator=staff_member_required,
     auth=django_auth,
 )
