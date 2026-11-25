@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import logo from "../../../assets/pixelated_logo.png";
 
 export function TerminalHeader() {
@@ -13,9 +14,13 @@ export function TerminalHeader() {
         SYS://KLIZ
       </div>
 
-      <div className="w-8 h-8 opacity-90">
-        <img src={logo} alt="logo" className="w-full h-full object-contain" />
-      </div>
+      <Link
+        to="/"
+        aria-label="Return to Home"
+        className="w-8 h-8 opacity-80 hover:opacity-100 transition-opacity"
+      >
+        <img src={logo} alt="KLIZ logo" className="w-full h-full object-contain" />
+      </Link>
     </div>
   );
 }
