@@ -46,7 +46,7 @@ export function Home() {
           <div className="md:pl-6 flex flex-col pt-6 md:pt-0 pb-6 md:pb-0">
             <div className="w-full max-w-[240px] mx-auto md:mx-0">
               <VisualFeed avatar={profile.avatar} name={profile.name} />
-              {profile.resume && <ResumeAction hasResume={profile.resume} />}
+              {profile.resume && <ResumeAction />}
             </div>
 
             <ConnectLinks

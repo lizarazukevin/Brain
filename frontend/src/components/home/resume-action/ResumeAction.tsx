@@ -1,8 +1,6 @@
 import { getResumeUrl } from "#/api/portfolio";
 
-export function ResumeAction({ hasResume }: { hasResume: boolean }) {
-  if (!hasResume) return null;
-
+export function ResumeAction() {
   return (
     <a
       href={getResumeUrl()}

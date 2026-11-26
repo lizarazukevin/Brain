@@ -243,3 +243,13 @@
       0 0 0 0.6rem transparent;
   }
 }
+
+@utility border-aura {
+  border-color: color-mix(in srgb, var(--aura) 30%, transparent);
+}
+@utility bg-aura-tint {
+  background-color: color-mix(in srgb, var(--aura) 8%, transparent);
+}
+@utility shadow-aura {
+  box-shadow: 0 0 24px -6px color-mix(in srgb, var(--aura) 40%, transparent);
+}

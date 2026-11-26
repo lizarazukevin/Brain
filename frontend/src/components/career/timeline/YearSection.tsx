@@ -60,12 +60,14 @@ export function YearSection({ group, index, position, marker, isFirst, isLast }:
         ref={scrollerRef}
         data-start={edges.start ? "" : undefined}
         data-end={edges.end ? "" : undefined}
-        className="fade-x scroll-pl-12 overflow-x-auto overflow-y-hidden hide-scrollbar snap-x snap-mandatory"
+        className="fade-x hide-scrollbar scroll-pl-12 snap-x snap-mandatory overflow-x-auto overflow-y-hidden"
       >
         <ul className="relative flex h-full w-max min-w-full gap-5 px-5 pb-6">
-          <span
+          {/* Dashed rail behind the orbs. An <li> because <ul> may only contain <li>. */}
+          <li
             aria-hidden
-            className="absolute inset-x-0 top-6 border-t border-dashed border-space-border/60"
+            role="presentation"
+            className="pointer-events-none absolute inset-x-0 top-6 border-t border-dashed border-space-border/60"
           />
 
           {group.entries.map(({ item, continued }, i) => (
