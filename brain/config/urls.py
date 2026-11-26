@@ -34,7 +34,7 @@ if settings.DEBUG:
 # API URLS
 urlpatterns += [
     # API base url
-    path("api/", api.urls),
+    path("v1/", api.urls),
 ]
 
 if settings.DEBUG:

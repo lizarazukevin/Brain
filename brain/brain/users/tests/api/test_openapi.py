@@ -15,7 +15,7 @@ def test_api_docs_not_accessible_by_anonymous_users(client):
     url = reverse("v1:openapi-view")
     response = client.get(url)
     assert response.status_code == HTTPStatus.FOUND
-    assert response.url == "/admin/login/?next=/api/docs"
+    assert response.url == "/admin/login/?next=/v1/docs"
 
 
 def test_api_schema_generated_successfully(admin_client):

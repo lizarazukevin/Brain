@@ -39,7 +39,7 @@ def test_list_users_as_authenticated_user(client: Client, user: User):
         {
             "email": user.email,
             "name": user.name,
-            "url": f"/api/users/{user.username}/",
+            "url": f"/v1/users/{user.username}/",
             "username": user.username,
         },
     ]
@@ -56,7 +56,7 @@ def test_retrieve_current_user(client: Client, user: User):
     assert response.json() == {
         "email": user.email,
         "name": user.name,
-        "url": f"/api/users/{user.username}/",
+        "url": f"/v1/users/{user.username}/",
         "username": user.username,
     }
 
@@ -72,7 +72,7 @@ def test_retrieve_user(client: Client, user: User):
     assert response.json() == {
         "email": user.email,
         "name": user.name,
-        "url": f"/api/users/{user.username}/",
+        "url": f"/v1/users/{user.username}/",
         "username": user.username,
     }
 
@@ -104,7 +104,7 @@ def test_update_current_user(client: Client):
         "email": user.email,
         "name": "New Name",
         "username": "old",
-        "url": "/api/users/old/",
+        "url": "/v1/users/old/",
     }
 
 
@@ -122,6 +122,6 @@ def test_update_user(client: Client):
     assert response.json() == {
         "email": user.email,
         "name": "New Name",
-        "url": "/api/users/old/",
+        "url": "/v1/users/old/",
         "username": "old",
     }
