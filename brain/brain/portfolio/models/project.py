@@ -13,7 +13,7 @@ class Project(models.Model):
     name = models.CharField(_("name"), max_length=100, unique=True)
     start_date = models.DateField(_("start date"))
     end_date = models.DateField(_("end date"), blank=True, null=True)
-    objective = models.CharField(_("objective"), max_length=400, blank=True, default="")
+    objective = models.CharField(_("objective"), max_length=200, blank=True, default="")
     description = models.TextField(_("description"), blank=True, default="")
     skills = models.ManyToManyField(
         Skill,
